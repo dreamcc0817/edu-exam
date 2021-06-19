@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <!-- 活动文件的大小 -->
+    <property name="max.file.size" value="10MB"/>
+     <!-- 保留的归档文件的最大数量 -->
+    <property name="max.history" value="2"/>
+     <!-- 控制所有归档日志文件的总大小 -->
+    <property name="total.size.cap" value="5MB"/>
+   <appender name="FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志日常打印文件 -->
+        <file>logs/tdhc-bpm-services.log</file>
+        <!-- 配置日志所生成的目录以及生成文件名的规则 在logs/mylog-2017-06-31.0.log.zip -->        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/education-training-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+              <!-- 如果按天来回滚，则最大保存时间为2天，2天之前的都将被清理掉 -->
+             <maxHistory>${max.history}</maxHistory>
+              <totalSizeCap>${total.size.cap}</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy   class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <!-- 文件输出的日志 的格式 -->
+        <encoder>
+            <pattern>
+                [ %-5level] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} -%msg%n
+            </pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+        <prudent>false</prudent>
+    </appender>
+    
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+<!--        <appender-ref ref="FILE"/>-->
+    </root>
+</configuration>
