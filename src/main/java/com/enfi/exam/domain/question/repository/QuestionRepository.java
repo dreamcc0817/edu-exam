@@ -1,6 +1,7 @@
 package com.enfi.exam.domain.question.repository;
 
 import com.enfi.exam.domain.question.entity.Question;
+import com.enfi.exam.domain.question.entity.dp.QuestionId;
 
 /**
  * @author cloud-cc
@@ -26,5 +27,5 @@ public interface QuestionRepository {
      * @param questionId 问题ID
      * @return 问题
      */
-    Question queryById(Long questionId);
+    Question queryById(QuestionId questionId);
 }

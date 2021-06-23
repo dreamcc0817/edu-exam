@@ -1,7 +1,9 @@
-package com.enfi.exam.domain.judge.entity;
+package com.enfi.exam.domain.answer.entity;
 
+import com.enfi.exam.domain.answer.entity.dp.ExamJudgeId;
 import com.enfi.exam.domain.common.dp.Score;
-import com.enfi.exam.domain.answer.entity.ExamPaperAnswer;
+import com.enfi.exam.domain.common.dp.UserId;
+import lombok.Data;
 
 /**
  * @author cloud-cc
@@ -10,9 +12,10 @@ import com.enfi.exam.domain.answer.entity.ExamPaperAnswer;
  * @date 2021/6/16 10:22
  * @Version 1.0
  */
-public class ExamJudgeInfo {
+@Data
+public class ExamJudge {
 
-    private Long id;
+    private ExamJudgeId examJudgeId;
 
     /**
      * 答卷
@@ -24,6 +27,9 @@ public class ExamJudgeInfo {
      */
     private Score score;
 
-    //TODO private User user 评卷人信息
+    /**
+     * 评卷人ID
+     */
+    private UserId judgeUserId;
 
 }

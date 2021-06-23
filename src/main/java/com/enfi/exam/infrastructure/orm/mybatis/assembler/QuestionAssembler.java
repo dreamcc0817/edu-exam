@@ -1,49 +1,53 @@
-package com.enfi.exam.application.assembler;
+package com.enfi.exam.infrastructure.orm.mybatis.assembler;
 
-import com.enfi.exam.application.dto.QuestionDto;
+import com.alibaba.fastjson.JSON;
 import com.enfi.exam.domain.common.dp.Score;
 import com.enfi.exam.domain.common.dp.SubjectType;
 import com.enfi.exam.domain.question.entity.Question;
 import com.enfi.exam.domain.question.entity.dp.Analyze;
 import com.enfi.exam.domain.question.entity.dp.Correct;
 import com.enfi.exam.domain.question.entity.dp.QuestionId;
+import com.enfi.exam.domain.question.entity.dp.QuestionInfo;
+import com.enfi.exam.infrastructure.orm.mybatis.po.QuestionPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.List;
+
 /**
  * @author cloud-cc
- * @ClassName QuestionMapper
- * @Description 转换
- * @date 2021/5/25 14:41
+ * @ClassName QuestionDTO
+ * @Description 问题DTO
+ * @date 2021/5/25 14:15
  * @Version 1.0
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
-public interface QuestionBuilder {
+public interface QuestionAssembler {
+    /**
+     * entity转po
+     *
+     * @param question entity
+     * @return po
+     */
+    @Mappings({
+            @Mapping(source = "questionId", target = "id")
+            ,@Mapping(source = "questionInfoList",target = "infoTextContent")
+    })
+    QuestionPo questionToPo(Question question);
 
     /**
-     * DTO转entity
-     *
-     * @param questionDto dto
+     * po转entity
+     * @param questionPo po
      * @return entity
      */
     @Mappings({
-            @Mapping(source = "totalScore", target = "score")
-            , @Mapping(target = "correct", ignore = true)
+            @Mapping(source = "id", target = "questionId")
+            ,@Mapping(source = "infoTextContent",target = "questionInfoList")
+            ,@Mapping(target = "correct",ignore = true)
     })
-    Question dtoToQuestion(QuestionDto questionDto);
-
-    /**
-     * entity转DTO
-     *
-     * @param question entity
-     * @return dto
-     */
-    @Mappings({
-            @Mapping(source = "score", target = "totalScore")
-    })
-    QuestionDto questionToDto(Question question);
+    Question poToQuestion(QuestionPo questionPo);
 
     /**
      * long 转 entity
@@ -83,6 +87,25 @@ public interface QuestionBuilder {
      */
     default Analyze strToAnalyze(String analyze) {
         return new Analyze(analyze);
+    }
+
+    /**
+     * str 转 entity
+     * @param questionInfos str
+     * @return entity
+     */
+    default List<QuestionInfo> strToQuestionInfos(String questionInfos){
+        return JSON.parseArray(questionInfos).toJavaList(QuestionInfo.class);
+    }
+
+    /**
+     * list 转 str
+     *
+     * @param questionInfoList list
+     * @return str
+     */
+    default String questionInfoListToString(List<QuestionInfo> questionInfoList) {
+        return JSON.toJSONString(questionInfoList);
     }
 
     /**
@@ -127,11 +150,13 @@ public interface QuestionBuilder {
 
     /**
      * entity转str
-     *
      * @param correct entity
      * @return str
      */
-    default String correctToStr(Correct correct) {
-        return correct.getCorrect().isEmpty() ? correct.getCorrectArrays().toString() : correct.getCorrect();
+    default String correctToStr(Correct correct){
+        if(correct.getCorrect().isEmpty()){
+            return correct.getCorrectArrays().toString();
+        }
+        return correct.getCorrect();
     }
 }

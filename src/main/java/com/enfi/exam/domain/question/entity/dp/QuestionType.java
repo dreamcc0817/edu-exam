@@ -14,64 +14,23 @@ public enum QuestionType {
     /**
      * 单选题
      */
-    SINGLECHOICE(1, "单选题"),
+    SINGLE_CHOICE
     /**
      * 多选题
      */
-    MULTIPLECHOICE(2, "多选题"),
+    ,MULTIPLE_CHOICE
     /**
      * 判断题
      */
-    TRUEORFALSE(3, "判断题"),
+    ,TRUE_OR_FALSE
     /**
      * 填空题
      */
-    GAPFILLING(4, "填空题"),
+    ,GAP_FILLING
     /**
      * 简答题
      */
-    SHORTANSWER(5, "简答题");
+    ,SHORT_ANSWER
 
-    Integer code;
-    String name;
-
-    QuestionType(Integer code, String name) {
-        this.code = code;
-        this.name = name;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static QuestionType convert(Integer code) {
-        switch (code) {
-            case 1:
-                return SINGLECHOICE;
-            case 2:
-                return MULTIPLECHOICE;
-            case 3:
-                return TRUEORFALSE;
-            case 4:
-                return GAPFILLING;
-            case 5:
-                return SHORTANSWER;
-            default: {
-                return null;
-            }
-        }
-    }
 
 }

@@ -1,7 +1,10 @@
 package com.enfi.exam.infrastructure.orm.mybatis.po;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -13,6 +16,9 @@ import java.util.Date;
  * @Version 1.0
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName(value = "t_question")
 public class QuestionPo {
 
@@ -22,7 +28,7 @@ public class QuestionPo {
     /**
      * 1.单选题 2.多选题 3.判断题 4.填空题 5.简答题
      */
-    private Integer questionType;
+    private String questionType;
 
     /**
      * 学科
@@ -32,17 +38,23 @@ public class QuestionPo {
     /**
      * 题目总分(千分制)
      */
-    private Integer score;
+    private Double score;
 
     /**
      * 题目难度
      */
-    private Integer difficult;
+    private String difficult;
 
     /**
      * 正确答案
      */
     private String correct;
+
+    /**
+     * 问题分析
+     */
+    @TableField(value = "analyzeText")
+    private String analyze;
 
     /**
      * 题目 填空、 题干、解析、答案等信息

@@ -34,7 +34,7 @@ public class AnswerService {
      * @param examPaperAnswer 答卷
      */
     public void submitAnswer(ExamPaperAnswer examPaperAnswer) {
-        examPaperAnswer.submitExamPaperAnswer(examPaperAnswer);
+        examPaperAnswer.submitExamPaperAnswer();
         answerRepository.save(examPaperAnswer);
     }
 }

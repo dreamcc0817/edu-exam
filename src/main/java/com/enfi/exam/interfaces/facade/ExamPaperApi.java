@@ -3,11 +3,9 @@ package com.enfi.exam.interfaces.facade;
 import com.enfi.exam.application.ExamPaperApplication;
 import com.enfi.exam.application.dto.ExamPaperDto;
 import com.enfi.exam.interfaces.common.util.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author cloud-cc
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/6/9 14:47
  * @Version 1.0
  */
+@Api(tags = "试卷Controller")
 @RequestMapping("/examPaper")
 @RestController
 public class ExamPaperApi {
@@ -27,9 +26,15 @@ public class ExamPaperApi {
     }
 
     @ApiOperation("保存试卷")
-    @PostMapping("/save")
+    @PostMapping()
     public Result<String> saveExamPaper(@RequestBody ExamPaperDto examPaperDto){
         examPaperApplication.save(examPaperDto);
         return Result.succeed();
+    }
+
+    @ApiOperation("查询试卷")
+    @GetMapping("/{id}")
+    public Result<ExamPaperDto> queryExamPaper(@PathVariable("id") Long examPaperId){
+        return null;
     }
 }

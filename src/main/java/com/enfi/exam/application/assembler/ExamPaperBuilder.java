@@ -77,7 +77,7 @@ public interface ExamPaperBuilder {
      * @param score int
      * @return entity
      */
-    default Score intToScore(Integer score) {
+    default Score doubleToScore(Double score) {
         return new Score(score);
     }
 
@@ -90,7 +90,6 @@ public interface ExamPaperBuilder {
     default ExamTime intToExamTime(Integer examTime) {
         return new ExamTime(examTime);
     }
-
 
     /**
      * entity 转 str
@@ -112,11 +111,11 @@ public interface ExamPaperBuilder {
     }
 
     /**
-     * entity 转 integer
+     * entity 转 double
      * @param score entity
-     * @return integer
+     * @return double
      */
-    default Integer intToScore(Score score){
+    default Double doubleToScore(Score score){
         return score.getGrossScore();
     }
 }

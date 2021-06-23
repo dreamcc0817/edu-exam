@@ -24,5 +24,9 @@ public enum ExamPaperStatus {
     /**
      * 判卷
      */
-    JUDGE
+    JUDGE,
+    /**
+     * 结束
+     */
+    END
 }

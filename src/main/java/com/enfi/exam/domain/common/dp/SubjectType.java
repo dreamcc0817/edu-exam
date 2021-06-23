@@ -1,6 +1,7 @@
 package com.enfi.exam.domain.common.dp;
 
 
+import lombok.Data;
 import org.springframework.util.StringUtils;
 
 import javax.validation.ValidationException;
@@ -12,6 +13,7 @@ import javax.validation.ValidationException;
  * @date 2021/5/21 15:09
  * @Version 1.0
  */
+@Data
 public class SubjectType {
 
     /**

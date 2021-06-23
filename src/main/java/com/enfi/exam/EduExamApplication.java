@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan("com.tdhc.exam.infrastructure.orm.mybatis.dao")
+@MapperScan("com.enfi.exam.infrastructure.orm.mybatis.dao")
 @EnableCaching
 public class EduExamApplication {
     public static void main(String[] args) {

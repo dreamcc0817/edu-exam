@@ -27,7 +27,7 @@ public class QuestionApi {
     }
 
     @ApiOperation("保存试题")
-    @PostMapping("/save")
+    @PostMapping()
     public Result<String> saveQuestion(@ApiParam("试题") @RequestBody QuestionDto questionDto) {
         questionApplication.save(questionDto);
         return Result.succeed();

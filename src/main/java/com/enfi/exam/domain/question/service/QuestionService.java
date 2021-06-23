@@ -1,6 +1,7 @@
-package com.enfi.exam.domain.question.entity.service;
+package com.enfi.exam.domain.question.service;
 
 import com.enfi.exam.domain.question.entity.Question;
+import com.enfi.exam.domain.question.entity.dp.QuestionId;
 import com.enfi.exam.domain.question.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,14 +32,13 @@ public class QuestionService {
         return question;
     }
 
-
     /**
      * 查询问题
      *
-     * @param id 问题ID
+     * @param questionId 问题ID
      * @return 问题
      */
-    public Question queryById(Long id) {
-        return questionRepository.queryById(id);
+    public Question queryById(QuestionId questionId) {
+        return questionRepository.queryById(questionId);
     }
 }

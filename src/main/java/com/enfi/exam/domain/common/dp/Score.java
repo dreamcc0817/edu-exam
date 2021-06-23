@@ -1,5 +1,7 @@
 package com.enfi.exam.domain.common.dp;
 
+import lombok.Data;
+
 import javax.validation.ValidationException;
 
 /**
@@ -9,6 +11,7 @@ import javax.validation.ValidationException;
  * @date 2021/5/21 15:23
  * @Version 1.0
  */
+@Data
 public class Score {
     /**
      * 满分（千分制）
@@ -18,34 +21,18 @@ public class Score {
     /**
      * 总分数
      */
-    private Integer grossScore;
+    private Double grossScore;
 
     /**
      * 实际得分
      */
-    private Integer actualScore;
-
-    public Integer getGrossScore() {
-        return grossScore;
-    }
-
-    public void setGrossScore(Integer grossScore) {
-        this.grossScore = grossScore;
-    }
-
-    public Integer getActualScore() {
-        return actualScore;
-    }
-
-    public void setActualScore(Integer actualScore) {
-        this.actualScore = actualScore;
-    }
+    private Double actualScore;
 
     /**
      * 总分数
      * @param grossScore 总分数
      */
-    public Score(Integer grossScore) {
+    public Score(Double grossScore) {
         if(grossScore == null){
             throw new ValidationException("grossSocre不能为空");
         }else if(grossScore > GROSS_SCORE || grossScore < 0){
@@ -59,7 +46,7 @@ public class Score {
      * @param grossScore 总分数
      * @param actualScore 实际得分
      */
-    public Score(Integer grossScore, Integer actualScore) {
+    public Score(Double grossScore, Double actualScore) {
         if(grossScore == null){
             throw new ValidationException("grossSocre不能为空");
         }else if(grossScore < actualScore || actualScore < 0){

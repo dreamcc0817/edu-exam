@@ -1,7 +1,7 @@
 package com.enfi.exam.infrastructure.service;
 
-import com.enfi.exam.domain.exampaper.repository.ExamPaperRepository;
 import com.enfi.exam.domain.exampaper.entity.ExamPaper;
+import com.enfi.exam.domain.exampaper.repository.ExamPaperRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ExamPaperRepositoryImpl implements ExamPaperRepository {
+
     @Override
-    public ExamPaper save(ExamPaper examPaper) {
-        return null;
+    public void save(ExamPaper examPaper) {
+
     }
 
     @Override

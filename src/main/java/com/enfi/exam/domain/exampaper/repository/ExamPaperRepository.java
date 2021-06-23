@@ -15,9 +15,8 @@ public interface ExamPaperRepository {
      * 保存试卷
      *
      * @param examPaper 试卷
-     * @return 试卷
      */
-    ExamPaper save(ExamPaper examPaper);
+    void save(ExamPaper examPaper);
 
     /**
      * 根据试卷ID查找试卷

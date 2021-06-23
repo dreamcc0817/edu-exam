@@ -5,7 +5,7 @@ import com.enfi.exam.domain.answer.entity.dp.ExamPaperStatus;
 import com.enfi.exam.domain.common.BaseDomain;
 import com.enfi.exam.domain.common.dp.ExamTime;
 import com.enfi.exam.domain.common.dp.UserId;
-import com.enfi.exam.domain.exampaper.entity.ExamPaper;
+import com.enfi.exam.domain.exampaper.entity.dp.ExamPaperId;
 import lombok.*;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class ExamPaperAnswer extends BaseDomain {
     /**
      * 试卷信息
      */
-    private ExamPaper examPaper;
+    private ExamPaperId examPaperId;
 
     /**
      * 试题回答
@@ -56,11 +56,11 @@ public class ExamPaperAnswer extends BaseDomain {
     /**
      * 选择试卷
      *
-     * @param examPaper 试卷ID
+     * @param examPaperId 试卷ID
      * @return 试卷相关内容
      */
-    public ExamPaperAnswer selectExamPaper(ExamPaper examPaper) {
-        this.setExamPaper(examPaper);
+    public ExamPaperAnswer selectExamPaper(ExamPaperId examPaperId) {
+        this.setExamPaperId(examPaperId);
         return this;
     }
 
@@ -80,8 +80,18 @@ public class ExamPaperAnswer extends BaseDomain {
      *
      * @return 答卷信息
      */
-    public ExamPaperAnswer submitExamPaperAnswer(ExamPaperAnswer examPaperAnswer) {
+    public ExamPaperAnswer submitExamPaperAnswer() {
         this.setExamPaperStatus(ExamPaperStatus.SUBMIT);
+        return this;
+    }
+
+    /**
+     * 评判答卷
+     *
+     * @return 答卷信息
+     */
+    public ExamPaperAnswer judgeExamPaperAnswer() {
+        this.setExamPaperStatus(ExamPaperStatus.JUDGE);
         return this;
     }
 }

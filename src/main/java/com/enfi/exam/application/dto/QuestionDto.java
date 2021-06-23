@@ -1,13 +1,10 @@
 package com.enfi.exam.application.dto;
 
-import com.enfi.exam.domain.common.dp.Difficult;
-import com.enfi.exam.domain.common.dp.Score;
-import com.enfi.exam.domain.common.dp.SubjectType;
-import com.enfi.exam.domain.question.entity.dp.Correct;
 import com.enfi.exam.domain.question.entity.dp.QuestionInfo;
-import com.enfi.exam.domain.question.entity.dp.QuestionType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -19,7 +16,9 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
-@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuestionDto {
 
     private Long questionId;
@@ -27,7 +26,7 @@ public class QuestionDto {
     /**
      * 问题类型
      */
-    private Integer questionType;
+    private String questionType;
 
     /**
      * 试卷科目
@@ -37,49 +36,26 @@ public class QuestionDto {
     /**
      * 问题总分数
      */
-    private Integer totalScore;
+    private Double totalScore;
 
     /**
      * 试卷难度
      */
-    private Integer difficult;
-
-    /**
-     * 单选、判断题等答案
-     */
-    private String correct;
+    private String difficult;
 
     /**
      * 题目、填空、 题干、解析、答案等信息
      */
-    private List<QuestionInfo> questionInfos;
+    private List<QuestionInfo> questionInfoList;
 
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
-    }
+    /**
+     * 答案
+     */
+    private String correct;
 
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType.getCode();
-    }
-
-    public void setSubjectType(SubjectType subjectType) {
-        this.subjectType = subjectType.getType();
-    }
-
-    public void setTotalScore(Score totalScore) {
-        this.totalScore = totalScore.getGrossScore();
-    }
-
-    public void setDifficult(Difficult difficult) {
-        this.difficult = difficult.getCode();
-    }
-
-    public void setCorrect(String correct) {
-        this.correct = correct;
-    }
-
-    public void setCorrect(Correct correct) {
-        this.correct = correct.getCorrect();
-    }
+    /**
+     * 问题解析
+     */
+    private String analyze;
 
 }

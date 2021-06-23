@@ -7,7 +7,8 @@ import com.enfi.exam.application.assembler.QuestionBuilder;
 import com.enfi.exam.application.dto.ExamPaperDto;
 import com.enfi.exam.application.dto.QuestionDto;
 import com.enfi.exam.domain.exampaper.entity.ExamPaper;
-import com.enfi.exam.domain.question.entity.service.QuestionService;
+import com.enfi.exam.domain.question.entity.dp.QuestionId;
+import com.enfi.exam.domain.question.service.QuestionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,9 +51,14 @@ public class ExamPaperApplication {
 
         List<QuestionDto> questionDtoList = examPaperDto.getQuestionDtoList();
         List<Question> fullQuestionDto = questionDtoList.stream()
-                .map(entity -> questionService.queryById(entity.getQuestionId())).collect(Collectors.toList());
+                .map(entity -> questionService.queryById(new QuestionId(entity.getQuestionId())))
+                .collect(Collectors.toList());
 
         examPaper.setQuestionList(fullQuestionDto);
         return examPaperService.save(examPaper);
+    }
+
+    public ExamPaperDto queryById(){
+        return null;
     }
 }
